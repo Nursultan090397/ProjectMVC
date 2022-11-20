@@ -1,10 +1,74 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
-  <title>$Title$</title>
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Courses</title>
+  <style>table,
+  td {
+    border: 1px solid #333;
+    margin-top: 200px;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 25px;
+  }
+
+  thread,
+  tfoot {
+    background-color: #333;
+    color: #fff;
+  }
+  </style>
+  <style>
+    table, th, td {
+      border: 1px solid black;
+      padding: 3px;
+    }
+  </style>
 </head>
 <body>
-$END$
+<table class="table table-bordered">
+  <thead class="table-dark">
+  <tr>
+    <th scope="colgroup">Id</th>
+    <th scope="col">Group name</th>
+    <th scope="col">Date of start</th>
+    <th scope="col">image</th>
+    <th scope="col">Student</th>
+    <th scope="col">Update</th>
+    <th scope="col">Delete</th>
+  </tr>
+  </thead>
+  <tbody class="table-success">
+  <tr th:each="group: ${groups}">
+    <td th:text="${group.id}"></td>
+    <td th:text="${group.groupName}"></td>
+    <td th:text="${group.dateOfStart}"></td>
+    <td th:text="${group.image}"></td>
+
+    <td><a th:href="@{/students/{id}(id=${group.getId()})}">
+      <button>Student</button>
+    </a>
+    </td>
+
+    <td><a th:href="@{/updateGroup/{id}(id=${group.id})}">
+      <button>Update</button>
+    </a>
+    </td>
+    <td><a th:href="@{/{companyId}/{id}/deleteGroup(id=${group.id},companyId=${companyId})}">
+      <button>Delete</button>
+    </a>
+    </td>
+  </tr>
+  </tbody>
+</table>
+<br><br><br><br>
+<div style="text-align: center">
+  <a th:href="@{/groups/{id}/addGroup(id=${companyId})}">
+    <button style="font-size: 25px;"> Add Group </button>
+  </a>
+</div>
 </body>
 </html>

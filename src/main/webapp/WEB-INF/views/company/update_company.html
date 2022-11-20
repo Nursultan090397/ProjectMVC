@@ -1,10 +1,30 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>add-company</title>
 </head>
 <body>
-$END$
+<form
+        action="#"
+        th:action="@{/updateCompany}"
+        th:object="${company}"
+        method="post">
+
+    <input type="hidden" name="id" th:field="*{id}">
+    <label>
+        <input type="text" name="companyName" th:field="*{companyName}" placeholder="Company Name">
+    </label>
+    <br><br>
+    <label>
+        <input type="text" name="locatedCountry" th:field="*{locatedCountry}" placeholder="Located Country">
+    </label>
+    <br><br>
+    <input type="submit" value="Add">
+
+</form>
 </body>
 </html>

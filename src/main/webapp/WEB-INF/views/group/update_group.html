@@ -1,10 +1,27 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>update-group</title>
 </head>
 <body>
-$END$
+<form
+        th:action="@{/{companyId}/{id}/saveUpdateGroup(id=${group.id}, companyId=${companyId})}"
+        th:object="${group}"
+        method="post">
+
+    <input type="hidden" name="id" th:field="*{id}">
+    <input type="text" name="groupName" th:field="*{groupName}" placeholder="Group Name">
+    <br><br>
+    <input type="text" name="dateOfStart" th:field="*{dateOfStart}" placeholder="date of start">
+    <br><br>
+    <input type="text" name="image" th:field="*{image}" placeholder="image">
+    <br><br>
+    <input type="submit" value="Add">
+
+</form>
 </body>
 </html>

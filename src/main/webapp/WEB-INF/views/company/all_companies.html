@@ -1,10 +1,74 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>Companies</title>
+    <style>table,
+    td {
+        border: 1px solid #333;
+        margin-top: 200px;
+        margin-left: auto;
+        margin-right: auto;
+        font-size: 25px;
+    }
+
+    thread,
+    tfoot {
+        background-color: #333;
+        color: #fff;
+    }
+    </style>
+    <style>
+        table, th, td {
+            border: 1px solid black;
+            padding: 3px;
+        }
+    </style>
 </head>
 <body>
-$END$
+<table class="table table-bordered ">
+    <thead class="table-dark">
+    <tr>
+        <th scope="colgroup">Id</th>
+        <th scope="col">Company name</th>
+        <th scope="col">Located country</th>
+        <!--        <th scope="col">Groups</th>-->
+        <th scope="col">Courses</th>
+        <th scope="col">Update</th>
+        <th scope="col">Delete</th>
+    </tr>
+    </thead>
+    <tbody class="table-success">
+    <tr th:each="company: ${companies}">
+        <td th:text="${company.id}"></td>
+        <td th:text="${company.companyName}"></td>
+        <td th:text="${company.locatedCountry}"></td>
+
+        <!--        <td><a th:href="@{/groups/{id}(id=${company.getId()})}">-->
+        <!--            <button>Groups</button>-->
+        <!--        </a>-->
+        <!--        </td>-->
+
+        <td><a th:href="@{/courses/{id}(id=${company.getId()})}">
+            <button>Courses</button>
+        </a>
+        </td>
+
+        <td><a th:href="@{/updateCompany(companyId=${company.id})}">
+            <button>Update</button>
+        </a>
+        </td>
+
+        <td> <a th:href="@{/deleteCompany/(companyId=${company.id})}">
+            <button>Delete</button>
+        </a>
+        </td>
+
+    </tr>
+    </tbody>
+</table>
+<br><br><br><br>
+<input style=" display: block; margin:auto; font-size:30px;" type="button" value="Add company"
+       onclick="window.location.href = 'addCompany'">
 </body>
 </html>
